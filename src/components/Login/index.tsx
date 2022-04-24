@@ -1,4 +1,4 @@
-import React from "react";
+import { connect } from "react-redux";
 import {
   Container,
   Form,
@@ -38,4 +38,10 @@ function Login() {
   );
 }
 
-export default Login;
+const mapStateToProps = (state: any) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch: any) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
