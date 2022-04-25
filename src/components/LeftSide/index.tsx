@@ -1,3 +1,4 @@
+import { connect } from "react-redux";
 import {
   AddPhotoText,
   ArtCard,
@@ -11,7 +12,7 @@ import {
   Widget,
 } from "./LeftSideStyle";
 
-function LeftSide() {
+function LeftSide(props: any) {
   return (
     <Container>
       <ArtCard>
@@ -19,7 +20,9 @@ function LeftSide() {
           <CardBackground />
           <a>
             <Photo />
-            <Link>Welcome, there!</Link>
+            <Link>
+              Welcome, {props?.user ? props?.user?.displayName : "there"} !
+            </Link>
           </a>
           <a>
             <AddPhotoText>Add a photo</AddPhotoText>
@@ -62,4 +65,10 @@ function LeftSide() {
   );
 }
 
-export default LeftSide;
+const mapStateToProps = (state: any) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+export default connect(mapStateToProps)(LeftSide);

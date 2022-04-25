@@ -1,13 +1,15 @@
 import React from "react";
-
+import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
 import LeftSide from "../LeftSide";
 import Main from "../Main";
-import RightSide from "../RifghtSide";
+import RightSide from "../RightSide";
 import { Container, Layout, Section } from "./HomeStyle";
 
-function Home() {
+function Home(props: any) {
   return (
     <Container>
+      {!props.user && <Navigate to="/" />}
       <Section>
         <h5>
           <a>Hiring in a hurry? - </a>
@@ -26,4 +28,10 @@ function Home() {
   );
 }
 
-export default Home;
+const mapStateToProps = (state: any) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+export default connect(mapStateToProps)(Home);
