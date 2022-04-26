@@ -9,6 +9,7 @@ export const Container = styled.div`
   z-index: 9999;
   color: black;
   background-color: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s;
 `;
 
 export const Content = styled.div`
@@ -84,11 +85,30 @@ export const SharedCreation = styled.div`
 export const AssetButton = styled.button`
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 40px;
   min-width: auto;
   border: none;
   background-color: white;
   color: rgba(0, 0, 0, 0.5);
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+  }
+`;
+export const AssetButtonAnyone = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  min-width: auto;
+  border: none;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.5);
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+  }
 `;
 export const AttachAssets = styled.div`
   align-items: center;
@@ -104,7 +124,7 @@ export const ShareComment = styled.div`
   margin-right: auto;
   border-left: 1px solid rgba(0, 0, 0, 0.15);
 
-  ${AssetButton} {
+  ${AssetButtonAnyone} {
     margin-right: 5px;
     span {
       margin-left: 5px;
@@ -115,13 +135,15 @@ export const ShareComment = styled.div`
 export const PostButton = styled.button`
   min-width: 60px;
   border-radius: 20px;
-  padding-left: 16px;
-  padding-right: 16px;
-  background-color: #0a66c2;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: ${(props) =>
+    props.disabled ? "rgba(0,0,0,0.4)" : "#0a66c2"};
   color: white;
   border: none;
   &:hover {
-    background-color: #004182;
+    background-color: ${(props) =>
+      props.disabled ? "rgba(0,0,0,0.5)" : "#004182"};
   }
 `;
 
@@ -138,5 +160,12 @@ export const Editor = styled.div`
     height: 35px;
     font-size: 16px;
     margin-bottom: 20px;
+  }
+`;
+
+export const UploadImage = styled.div`
+  text-align: center;
+  img {
+    width: 100px;
   }
 `;

@@ -16,10 +16,8 @@ function Main() {
 
   const handleClick = (e: any) => {
     e.preventDefault();
-    if (e.target !== e.current.target) {
-      return;
-    }
 
+    console.log(e);
     switch (showModal) {
       case "open":
         setShowModal("close");
