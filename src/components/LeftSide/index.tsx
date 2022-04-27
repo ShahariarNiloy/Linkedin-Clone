@@ -19,7 +19,13 @@ function LeftSide(props: any) {
         <UserInfo>
           <CardBackground />
           <a>
-            <Photo />
+            <Photo>
+              {props?.user && props?.user?.photoURL ? (
+                <img src={props.user.photoURL} alt="" />
+              ) : (
+                <img src="/images/photo.svg" alt="" />
+              )}
+            </Photo>
             <Link>
               Welcome, {props?.user ? props?.user?.displayName : "there"} !
             </Link>

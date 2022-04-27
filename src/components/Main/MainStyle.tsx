@@ -195,3 +195,10 @@ export const SocialCount = styled.ul`
     }
   }
 `;
+
+export const Content = styled.div`
+  text-align: center;
+  & > img {
+    width: 30px;
+  }
+`;

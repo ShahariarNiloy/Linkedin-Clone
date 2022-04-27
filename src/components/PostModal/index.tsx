@@ -31,15 +31,18 @@ function PostModal(props: any) {
     setEditorText("");
     setSharedImage("");
     setVideoLink("");
+    setShowImageArea(false);
     setShowVideoArea(false);
 
     props.handleClick(e);
   };
 
   const postArticle = (e: any) => {
+    console.log(e);
     if (e.target !== e.currentTarget) {
       return;
     }
+    console.log("post alone");
     const payload = {
       image: sharedImage,
       video: videoLink,
@@ -47,6 +50,8 @@ function PostModal(props: any) {
       description: editorText,
       timestamp: Timestamp.now(),
     };
+    props.postArticle(payload);
+    reset(e);
   };
 
   const showVideoLink = (area: any) => {
@@ -93,7 +98,7 @@ function PostModal(props: any) {
                 />
 
                 <UploadImage>
-                  {showImageArea ? (
+                  {showImageArea && !sharedImage ? (
                     <>
                       <input
                         type="file"
@@ -109,7 +114,9 @@ function PostModal(props: any) {
                     <></>
                   )}
                   {sharedImage && !showVideoArea ? (
-                    <img src={URL.createObjectURL(sharedImage)} alt="" />
+                    <>
+                      <img src={URL.createObjectURL(sharedImage)} alt="" />
+                    </>
                   ) : (
                     <></>
                   )}
@@ -137,6 +144,7 @@ function PostModal(props: any) {
                   onClick={() => {
                     setShowImageArea(!showImageArea);
                     setShowVideoArea(false);
+                    setSharedImage("");
                   }}
                 >
                   <img src="/images/sharePhoto-icon.svg" alt="" />
@@ -157,7 +165,10 @@ function PostModal(props: any) {
                 </AssetButtonAnyone>
               </ShareComment>
 
-              <PostButton disabled={!editorText ? true : false}>
+              <PostButton
+                disabled={!editorText ? true : false}
+                onClick={(e) => postArticle(e)}
+              >
                 Post
               </PostButton>
             </SharedCreation>
@@ -173,6 +184,8 @@ const mapStateToProps = (state: any) => {
     user: state.userState.user,
   };
 };
-const mapDispatchToProps = (dispatch: any) => ({});
+const mapDispatchToProps = (dispatch: any) => ({
+  postArticle: (payload: any) => dispatch(postArticleAPI(payload)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostModal);

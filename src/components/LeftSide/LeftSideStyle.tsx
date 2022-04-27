@@ -27,19 +27,20 @@ export const CardBackground = styled.div`
   margin: -12px -12px 0;
 `;
 export const Photo = styled.div`
-  box-shadow: none;
-  background-image: url("/images/photo.svg");
-  width: 72px;
-  height: 72px;
-  box-sizing: border-box;
-  background-clip: content-box;
-  background-color: white;
-  background-position: center;
-  background-size: 60%;
-  background-repeat: no-repeat;
-  border: 2px solid white;
-  margin: -38px auto 12px;
-  border-radius: 50%;
+  & > img {
+    box-shadow: none;
+    width: 72px;
+    height: 72px;
+    box-sizing: border-box;
+    background-clip: content-box;
+    background-color: white;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border: 1px solid white;
+    margin: -38px auto 12px;
+    border-radius: 50%;
+  }
 `;
 
 export const Link = styled.div`
