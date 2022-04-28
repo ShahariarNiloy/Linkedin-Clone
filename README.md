@@ -1,6 +1,6 @@
 # # Linkedin Clone Readme
 
-## <a href='https://linkedin-clone-53617.firebaseapp.com/' target='_blank'>LIVE DEMO</a>
+## <a href='https://linkedin-clone-53617.web.app/' target='_blank'>LIVE DEMO</a>
 
 
 # Getting Started with Create React App
