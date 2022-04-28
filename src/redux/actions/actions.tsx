@@ -61,7 +61,6 @@ export function signOutAPI() {
 }
 
 export function postArticleAPI(payload: any) {
-  console.log(payload);
   return (dispatch: any) => {
     dispatch(setLoading(true));
     if (payload.image !== undefined) {
@@ -115,6 +114,21 @@ export function postArticleAPI(payload: any) {
         description: payload.description,
       });
       dispatch(setLoading(false));
+    } else {
+      const dbCollection = collection(db, "articles");
+      setDoc(doc(dbCollection), {
+        actor: {
+          description: payload.user.email,
+          title: payload.user.displayName,
+          date: payload.timestamp,
+          image: payload.user.photoURL,
+        },
+        video: "",
+        sharedImg: "",
+        comments: 0,
+        description: payload.description,
+      });
+      dispatch(setLoading(false));
     }
   };
 }
@@ -126,7 +140,6 @@ export function getArticlesAPI() {
     const q = query(dbCollection, orderBy("actor.date", "desc"));
     onSnapshot(q, (snapshot: any) => {
       payload = snapshot.docs.map((doc: any) => doc.data());
-      console.log(payload);
       dispatch(getArticles(payload));
     });
   };

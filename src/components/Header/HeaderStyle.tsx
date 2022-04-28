@@ -90,6 +90,32 @@ export const NavListWrap = styled.ul`
   }
 `;
 
+export const SignOut = styled.div`
+  position: absolute;
+  top: 45px;
+  background: white;
+  border-radius: 0 0 5px 5px;
+  width: 100px;
+  height: 40px;
+  font-size: 16px;
+  transition-duration: 167ms;
+  text-align: center;
+  display: none;
+  color: #0a66c2;
+  cursor: pointer;
+`;
+export const HoverNotImplemented = styled.div`
+  position: absolute;
+  top: 45px;
+  background: white;
+  border-radius: 0 0 5px 5px;
+  width: 200px;
+  height: 40px;
+  font-size: 16px;
+  transition-duration: 167ms;
+  text-align: center;
+`;
+
 export const NavList = styled.li`
   display: flex;
   align-items: center;
@@ -124,20 +150,7 @@ export const NavList = styled.li`
     }
   }
 `;
-export const SignOut = styled.div`
-  position: absolute;
-  top: 45px;
-  background: white;
-  border-radius: 0 0 5px 5px;
-  width: 100px;
-  height: 40px;
-  font-size: 16px;
-  transition-duration: 167ms;
-  text-align: center;
-  display: none;
-  color: #0a66c2;
-  cursor: pointer;
-`;
+
 export const User = styled(NavList)`
   a > svg {
     width: 24px;

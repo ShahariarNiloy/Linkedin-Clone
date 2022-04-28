@@ -1,4 +1,4 @@
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   AddPhotoText,
   ArtCard,
@@ -12,7 +12,9 @@ import {
   Widget,
 } from "./LeftSideStyle";
 
-function LeftSide(props: any) {
+function LeftSide() {
+  const user = useSelector((state: any) => state?.userState?.user);
+
   return (
     <Container>
       <ArtCard>
@@ -20,15 +22,13 @@ function LeftSide(props: any) {
           <CardBackground />
           <a>
             <Photo>
-              {props?.user && props?.user?.photoURL ? (
-                <img src={props.user.photoURL} alt="" />
+              {user && user?.photoURL ? (
+                <img src={user?.photoURL} alt="" />
               ) : (
                 <img src="/images/photo.svg" alt="" />
               )}
             </Photo>
-            <Link>
-              Welcome, {props?.user ? props?.user?.displayName : "there"} !
-            </Link>
+            <Link>Welcome, {user ? user?.displayName : "there"} !</Link>
           </a>
           <a>
             <AddPhotoText>Add a photo</AddPhotoText>
@@ -71,10 +71,4 @@ function LeftSide(props: any) {
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    user: state.userState.user,
-  };
-};
-
-export default connect(mapStateToProps)(LeftSide);
+export default LeftSide;

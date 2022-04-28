@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signOutAPI } from "../../redux/actions/actions";
 import {
   Container,
@@ -13,8 +13,11 @@ import {
   SignOut,
   User,
   Work,
+  HoverNotImplemented,
 } from "./HeaderStyle";
-function Header(props: any) {
+function Header() {
+  const user = useSelector((state: any) => state?.userState?.user);
+  const dispatch: any = useDispatch();
   return (
     <Container>
       <Content>
@@ -65,8 +68,8 @@ function Header(props: any) {
             </NavList>
             <User>
               <a>
-                {props?.user && props?.user?.photoURL ? (
-                  <img src={props.user.photoURL} alt="" />
+                {user && user?.photoURL ? (
+                  <img src={user.photoURL} alt="" />
                 ) : (
                   <img src="/images/user.svg" alt="" />
                 )}
@@ -75,7 +78,7 @@ function Header(props: any) {
                   <img src="/images/down-icon.svg" alt="" />
                 </span>
               </a>
-              <SignOut onClick={() => props.signOut()}>
+              <SignOut onClick={() => dispatch(signOutAPI())}>
                 <a>Sign Out</a>
               </SignOut>
             </User>
@@ -95,14 +98,4 @@ function Header(props: any) {
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    user: state?.userState?.user,
-  };
-};
-
-const mapDispatchToProps = (dispatch: any) => ({
-  signOut: () => dispatch(signOutAPI()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;
